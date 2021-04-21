@@ -9,8 +9,7 @@ interface SocialNetwork
     /**
      * Post a message.
      */
-    public function post($author, $message): void;
-
+    public function post(string $author, string $message): void;
 
     /**
      * Get messages in a users feed.
