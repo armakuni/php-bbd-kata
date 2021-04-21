@@ -1,0 +1,21 @@
+{
+    "name": "armakuni/php-bdd-kata",
+    "description": "A kata for learning outside-in TDD with Behat",
+    "type": "project",
+    "require-dev": {
+        "behat/behat": "^3.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {},
+    "scripts": {
+        "test":  ["@lint", "@test:unit", "@test:e2e"],
+        "lint": "phpcs",
+        "test:unit":  "phpunit",
+        "test:e2e": "behat"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flitter\\": "src/"
+        }
+    }
+}
