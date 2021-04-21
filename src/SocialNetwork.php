@@ -13,8 +13,10 @@ interface SocialNetwork
 
     /**
      * Get messages in a users feed.
+     *
+     * @return array['author' => string, 'message' => string]
      */
-    public function getFeedFor(string $user): void;
+    public function getFeedFor(string $user): array;
 
     /**
      * Make one user follow another
