@@ -1,10 +1,11 @@
 <?php
 
+namespace Features\Flitter;
+
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
-use Flitter\SocialNetwork;
 
-class FeatureContext implements Context
+class MainContext implements Context
 {
     public function __construct()
     {

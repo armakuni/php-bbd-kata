@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Flitter;
-
 
 interface SocialNetwork
 {

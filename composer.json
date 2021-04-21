@@ -17,5 +17,11 @@
         "psr-4": {
             "Flitter\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Flitter\\": "tests/",
+            "Features\\Flitter\\": "features/bootstrap"
+        }
     }
 }

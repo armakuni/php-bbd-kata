@@ -8,7 +8,7 @@ development of a system from the outside.
 ## How To Do The Kata
 
 Implement each of the commented out features in [message_feed.feature](./features/message_feed.feature).
-The code in the [FeatureContext.php](./features/bootstrap/FeatureContext.php) should only interact
+The code in the [MainContext.php](./features/bootstrap/MainContext.php) should only interact
 with an instance of [SocialNetwork](./src/SocialNetwork.php).
 
 ## Development Setup
