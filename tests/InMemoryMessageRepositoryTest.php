@@ -45,4 +45,22 @@ class InMemoryMessageRepositoryTest extends TestCase
 
         assertNotContains($message, $this->repository->getMessagesBy("Alice"));
     }
+
+    public function testGetMessagesMentioningUserDoesNotReturnsMessagesMentioningTheUsers()
+    {
+        $message = new Message("Alice", "I do not link Bob");
+
+        $this->repository->addMessage($message);
+
+        assertNotContains($message, $this->repository->getMessagesMentioningUser("Bob"));
+    }
+
+    public function testGetMessagesMentioningUserReturnsAnMessagesWhichMentionTheUser()
+    {
+        $message = new Message("Alice", "I like @Bob");
+
+        $this->repository->addMessage($message);
+
+        assertContains($message, $this->repository->getMessagesMentioningUser("Bob"));
+    }
 }

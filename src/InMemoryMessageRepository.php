@@ -21,4 +21,12 @@ class InMemoryMessageRepository implements MessageRepository
     {
         return array_filter($this->messages, fn($message) => $message->isByAuthor($user));
     }
+
+    /**
+     * @return Message[]
+     */
+    public function getMessagesMentioningUser(string $user): array
+    {
+        return array_filter($this->messages, fn($message) =>$message->mentionsUser($user));
+    }
 }

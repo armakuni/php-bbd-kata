@@ -2,8 +2,6 @@
 
 namespace Flitter;
 
-use JetBrains\PhpStorm\Pure;
-
 class Flitter implements SocialNetwork
 {
     private MessageRepository $messages;
@@ -12,7 +10,7 @@ class Flitter implements SocialNetwork
     /**
      * Flitter constructor.
      */
-    #[Pure] public function __construct()
+    public function __construct()
     {
         $this->messages = new InMemoryMessageRepository();
         $this->follows = new InMemoryFollowRepository();
@@ -30,6 +28,8 @@ class Flitter implements SocialNetwork
         foreach ($this->follows->getFollowsByUser($user) as $follow) {
             $messages += $this->messages->getMessagesBy($follow->getUser());
         }
+
+        $messages += $this->messages->getMessagesMentioningUser($user);
 
         return $this->formattedMessages($messages);
     }

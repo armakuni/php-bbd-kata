@@ -30,4 +30,16 @@ class MessageTest extends TestCase
         assertFalse($this->aliceMessage->isByAuthor("Bob"));
         assertFalse($this->bobMessage->isByAuthor("Alice"));
     }
+
+    public function testMentionsUsersReturnsFalseWhenTheUserIsMentioned()
+    {
+        $message = new Message("Bob", "I'm not mentioning anyone");
+        assertFalse($message->mentionsUser("Alice"));
+    }
+
+    public function testMentionsUsersReturnsTrueWhenTheUserIsMentioned()
+    {
+        $message = new Message("Bob", "Hi @Alice");
+        assertTrue($message->mentionsUser("Alice"));
+    }
 }

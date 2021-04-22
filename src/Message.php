@@ -27,4 +27,9 @@ class Message
     {
         return $this->author == $user;
     }
+
+    public function mentionsUser(string $user): bool
+    {
+        return str_contains($this->message, "@$user");
+    }
 }
