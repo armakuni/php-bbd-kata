@@ -3,12 +3,20 @@
 namespace Features\Flitter;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
+use Flitter\Flitter;
+use Flitter\SocialNetwork;
+
+use function PHPUnit\Framework\assertContains;
+use function PHPUnit\Framework\assertNotContains;
 
 class MainContext implements Context
 {
+    private SocialNetwork $network;
+    private array $feed;
+
     public function __construct()
     {
+        $this->network = new Flitter();
     }
 
     /**
@@ -16,7 +24,7 @@ class MainContext implements Context
      */
     public function userHasPostedAMessage(string $author, string $message): void
     {
-        throw new PendingException();
+        $this->network->post($author, $message);
     }
 
     /**
@@ -24,7 +32,7 @@ class MainContext implements Context
      */
     public function userFollows(string $follower, string $user): void
     {
-        throw new PendingException();
+        $this->network->follow($follower, $user);
     }
 
     /**
@@ -32,7 +40,7 @@ class MainContext implements Context
      */
     public function userIsNotFollowing(string $follower, string $user): void
     {
-        throw new PendingException();
+        // Intentionally blank
     }
 
     /**
@@ -40,7 +48,7 @@ class MainContext implements Context
      */
     public function userViewsTheirFeed(string $user): void
     {
-        throw new PendingException();
+        $this->feed = $this->network->getFeedFor($user);
     }
 
     /**
@@ -48,7 +56,7 @@ class MainContext implements Context
      */
     public function theyCanSeeTheMessageByAuthor(string $message, string $author): void
     {
-        throw new PendingException();
+        assertContains(["author" => $author, "message" => $message], $this->feed);
     }
 
     /**
@@ -56,6 +64,6 @@ class MainContext implements Context
      */
     public function theyCannotSeeTheMessageByAuthor(string $message, string $author): void
     {
-        throw new PendingException();
+        assertNotContains(["author" => $author, "message" => $message], $this->feed);
     }
 }
